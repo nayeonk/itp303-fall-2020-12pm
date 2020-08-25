@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Coachella</title>
+	<style>
+		/* select both html and body tags */
+		html, body {
+			/* overwrite any spacing that comes by default from the browser */
+			margin: 0;
+			padding: 0;
+		}
+		#header {
+			background-color: #f5dfc0;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			text-align: center;
+		}
+		#header h1 {
+			margin-top: 0;
+			margin-bottom: 0;
+			color: blue;
+		}
+		#about {
+			background-color: yellow;
+			margin-left: auto;
+			margin-right: auto;
+			/* This width needs to be the TOTAL of both divs INSIDE this div*/
+			width: 700px;
+
+			/* Make background color pink to give the illusion that column2 is tall as the green one */
+			background-color: pink;
+		}
+		#about #column1 {
+			background-color: lightgreen;
+			width: 300px;
+			float: left;
+		}
+		#about #column2 {
+			background-color: pink;
+			/*width: 400px;*/
+			/*width: 380px;*/
+			width: 378px;
+			float: left;
+			padding: 10px;
+			border: 1px solid black;
+
+			/* don't add height to this column to make it as tall as the green one next to it. Instead, a trick is to make the parent div the same bg color (see #about)*/
+		}
+		.clearfloat {
+			clear: both;
+		}
+		#artists {
+			background-color: skyblue;
+			width: 900px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		#artists h2 {
+			color: blue;
+			margin: 0;
+		}
+		#artists .artist-column {
+			background-color: #fef587;
+			width: 258px;
+			padding: 10px;
+			margin: 10px;
+			border: 1px solid black;
+			float: left;
+		}
+		#artists .artist-column img {
+			width: 100%;
+		}
+		#footer {
+			background-color: black;
+			color: white;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<h1>Coachella</h1>
+	</div> <!-- #header -->
+
+	<div id="about">
+		<div id="column1">
+			<img src="images/coachella.png" />
+		</div> <!-- #column1 -->
+
+		<div id="column2">
+			<p>The Coachella Valley Music and Arts Festival (commonly called Coachella or the Coachella Festival) is an annual music and arts festival held at the Empire Polo Club in Indio, California, in the Coachella Valley in the Colorado Desert. It was co-founded by Paul Tollett and Rick Van Santen in 1999, and is organized by Goldenvoice, a subsidiary of AEG Presents. The event features musical artists from many genres of music, including rock, pop, indie, hip hop and electronic dance music, as well as art installations and sculptures. Across the grounds, several stages continuously host live music.</p>
+		</div> <!-- #column2 -->
+
+		<!-- Stop floating after column 2 -->
+		<div class="clearfloat"></div>
+
+	</div> <!-- #about -->
+
+	<div id="artists">
+		<h2>Artists</h2>
+		<div class="artist-column">
+			<img src="images/ariana.jpg" alt="Ariana Grande"/>
+			<h3>Ariana Grande</h3>
+		</div>
+		<div class="artist-column">
+			<img src="images/ariana.jpg" alt="Ariana Grande"/>
+			<h3>Ariana Grande</h3>
+		</div>
+		<div class="artist-column">
+			<img src="images/ariana.jpg" alt="Ariana Grande"/>
+			<h3>Ariana Grande</h3>
+		</div>
+
+		<!-- don't forget to clear the float! -->
+		<div class="clearfloat"></div>
+	</div>
+
+	<div id="footer">
+		Copyright 2020
+	</div>
+
+</body>
+</html>
