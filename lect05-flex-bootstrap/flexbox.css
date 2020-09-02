@@ -1,0 +1,77 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Oswald', sans-serif;
+}
+/* Asterisk (*) selects ALL the html elements in the html file */
+* {
+	box-sizing: border-box;
+}
+
+/* Colors for each box. */
+.box1 { background-color: #011627; }
+.box2 { background-color: #EB5160; }
+.box3 { background-color: #030301; }
+.box4 { background-color: #00D9C0; }
+.box5 { background-color: #FF0022; }
+
+/* The parent */
+.container {
+	border: 10px solid skyblue;
+	/* The moment this line is added, all the children elements of .container will be placed next to each other, left to right */
+	display: flex;
+	/* flex-direction establishes the MAIN AXIS (e.g. left to right, right to left, up to down) */
+	flex-direction: row;
+
+	height: 500px;
+
+	/* By default, all flex items fit in one row, however we can overwrite that using flex-wrap */
+	/*flex-wrap: wrap;*/
+
+	/* justify-content: defines alignment along the MAIN AXIS, not always horizontal center */
+	justify-content: center;
+
+	/* align-items: defines alignment along the CROSS AXIS (the opposite of main axis) */
+	align-items: center;
+}
+
+/* .container's direct children */
+.box {
+	/* width and margin will still work on flex items*/
+	width: 100px;
+	/*margin: 10px;*/
+	color: white;
+	font-size: 28px;
+	/* Making boxes go left to right using floats */
+	/*float: left;
+	width: 100px;*/
+}
+
+.box2 {
+	/* By default all flex items have an order of 0. Whoever has the higher order number, is displayed last */
+	order: 9;
+}
+.box3 {
+	order: 10;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
