@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS</title>
+	<style>
+		form {
+			width: 500px;
+		}
+		.form-row {
+			margin-bottom: 10px;
+			display: flex;
+		}
+		label {
+			padding-right: 10px;
+			width: 60px;
+		}
+		input {
+			width: 150px;
+			height: 20px;
+		}
+		.error {
+			color: red;
+			font-style: italic;
+			margin-left: 10px;
+			/* Hide the error by default */
+			visibility: hidden;
+		}
+
+	</style>
+</head>
+<body>
+	<h1 id="text">Form</h1>
+
+	<form id="form" method="" action="">
+
+		<div class="form-row">
+
+			<label for="name-input">Name: </label>
+
+			<input type="text" id="name-input" name="name-input" placeholder="Tommy Trojan" />
+
+			<div class="error">Error message</div>
+
+		</div>
+
+		<div class="form-row">
+			<label for="age-input">Age: </label>
+			<input type="text" id="age-input" name="age-input"/> 
+			<div class="error">Error message</div>
+		</div>
+
+		<div class="form-row">
+			<button type="submit" id="go-button">Go</button>
+		</div>
+
+	</form>
+
+<script>
+	// Keypress events
+	// .onkeydown & .onkeyup
+	// document.onkeydown = function() {
+	// 	console.log("onkeydown");
+	// }
+	// document.onkeyup = function() {
+	// 	console.log("onkeyup");
+	// }
+
+	// .onkeypress - similar to onkeydown even except that this doesn't register the arrow, control, alt, etc buttons. it's only for "typing"
+
+	document.onkeypress = function(event) {
+		// console.log("onkeypress");
+		// Everytime an event is fired, we get access to an event object that tells us info about what the event was.
+		// console.log(event);
+		// console.log(event.key);
+
+		// Display what the user typed onto the browser
+		// document.querySelector("#text").innerHTML = document.querySelector("#text").innerHTML+  event.key;
+		// document.querySelector("#text").innerHTML +=  event.key;
+
+		// Don't allow a specific key
+		// if( event.key == "f" ) {
+		// 	alert("The letter f is not allowed!");
+		// }
+	}
+
+	// Another event that is fun to play around with is onscroll
+	document.onscroll = function() {
+
+	}
+
+	// JS Data types
+	let number = 7;
+	let message = "hi";
+	let decimal = 1.2;
+
+	// Arithmetic
+	console.log(1+1);
+	console.log(5-10);
+	console.log(1+1.5);
+	console.log(number + decimal);
+	console.log(7+7);
+	console.log(7+"7");
+	console.log("1"+"7");
+
+	console.log(4*3);
+	console.log(10/2);
+	console.log(1/2);
+	// sometimes adding decimals have weird results
+	console.log(0.1+0.2);
+
+	console.log(1/0);
+	console.log(-1/0);
+	
+	// This doesn't throw an error. The result is NaN, which means not a number. It is a number type even though it's not a number.
+	console.log(0/"hi");
+
+	// Can easily convert strings to numbers
+	let aNumber = "1000";
+
+	console.log(aNumber);
+	// convert string to an integer
+	console.log(parseInt(aNumber));
+	// conver string to a float
+	console.log(parseFloat("1.3"));
+
+
+	// ---- Strings in JS
+	// Strings are arrays of characters
+	// Strings in JS are IMMUTABLE
+	let name = "nayeon";
+	console.log(name[0]);
+	console.log(name.length);
+	console.log(name.indexOf("n"));
+	console.log(name.lastIndexOf("n"));
+	console.log(name.toUpperCase());
+
+	// Three different ways to detect user input in a form
+	// 1. onchange - this event gets triggered when the focus is changed from this input tag to another
+	document.querySelector("#name-input").onchange = function() {
+		console.log("changed!!");
+	}
+	// 2. oninput - this event gets triggered every time user types something in the input tag
+	document.querySelector("#name-input").oninput = function() {
+		console.log("oninput");
+	}
+
+	// 3. onsubmit - this event only gets triggered when user submits the entire form. NOT specific to input tag
+	document.querySelector("#form").onsubmit = function(event) {
+
+		// By default, when user clicks on "submit" button, the form will try to submit. The page will get refreshed.
+
+		// However thanks to JS, we can prevent this default behavior
+		event.preventDefault();
+
+		console.log("onsubmit");
+
+		// Add some validation: make sure name input is NOT empty
+
+		// Grab what the user typed in the name input field
+		let nameInput = document.querySelector("#name-input").value;
+		console.log(nameInput);
+
+		// use .trim() to remove any leading or trailing whitespaces
+		if(nameInput.trim().length == 0) {
+			console.log("Name is empty!!");
+			document.querySelector("#name-input").nextElementSibling.innerHTML = "Name cannot be empty";
+			document.querySelector("#name-input").nextElementSibling.style.visibility = "visible";
+		}
+
+	}
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
