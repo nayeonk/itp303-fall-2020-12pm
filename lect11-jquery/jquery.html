@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="section">
+		<h1>jQuery Playground</h1>
+	</div> <!-- .section -->
+
+	<div id="form-section" class="section">
+		<h2>Form</h2>
+		<form id="form">
+			<label for="name-input">Name:</label>
+			<input type="text" id="name-input"/>
+			<button type="submit">Submit</button>
+		</form>
+	</div> <!-- #form-section -->
+
+	<div id="kanye-section" class="section">
+		<h2>Image Switch</h2>
+		<p>Hover over the image to flip it:</p>
+		<img id="kanye" src="images/kanye-1.jpg" alt="Kanye West">
+	</div> <!-- #kanye-section -->
+
+	<div id="color-boxes" class="section">
+		<h2>Background Color Change</h2>
+		<p>Click on a square to change background color:</p>
+
+		<div id="color-wrapper">
+			<div class="color-box" id="box1" data-color="#000">
+				#000
+			</div>
+			<div class="color-box" id="box2" data-color="#FFF">
+				#FFF
+			</div>
+			<div class="color-box" id="box3" data-color="#CCC">
+				#CCC
+			</div>
+			<div class="color-box" id="box4" data-color="#777">
+				#777
+			</div>
+			<div class="color-box" id="box5" data-color="#FC0">
+				#FC0
+			</div>
+			<div class="color-box" id="box6" data-color="#900">
+				#900
+			</div>
+
+			<div class="clearfloat"></div>
+		</div> <!-- #color-wrapper -->
+	</div> <!-- #color-boxes -->
+
+	<div id="dom-section" class="section">
+		<h2>DOM Traversal</h2>
+
+		<h3>Lorem ipsum dolor sit amet</h3>
+
+		<p>Consectetur adipiscing elit. Proin nibh eros, tincidunt at metus non, ultrices vulputate felis. Suspendisse potenti. Vivamus sit amet cursus dolor, at lacinia dui. Pellentesque fringilla enim nibh, quis lobortis ante dictum vel. Etiam tortor turpis, venenatis sit amet est et, dictum auctor dolor. Etiam vehicula iaculis pharetra. Sed viverra interdum efficitur.</p>
+
+		<h3>Quisque volutpat eros ullamcorper</h3>
+		<p>Velit pulvinar, at tincidunt orci placerat. Morbi blandit neque est, id posuere urna accumsan non. Pellentesque a ligula sed velit elementum efficitur. Proin ex lectus, porta vitae accumsan ut, mattis ac ante. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam nec mauris tortor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed diam volutpat odio mollis accumsan. Proin tempus erat sed lacinia condimentum. Fusce molestie ornare finibus. Nunc dictum vulputate scelerisque. Donec elementum semper arcu, eget blandit magna varius et. Integer pulvinar sem non sem volutpat varius. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
+
+		<h3>Nulla elit eros</h3>
+		<p>Interdum sed, finibus in nibh. Praesent eros lectus, fermentum at enim non, porta ultrices nisi. Aliquam odio libero, commodo id pulvinar eget, gravida non turpis. In mi massa, placerat ut ex sed, mollis imperdiet elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi ultrices scelerisque fermentum. Quisque luctus sapien vitae dignissim ornare. Donec non lorem sagittis, condimentum augue vel, suscipit nisl. Praesent blandit eu ligula eu dictum. Donec faucibus purus in urna mollis, nec vulputate sem mollis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam vulputate dignissim libero, ut blandit massa ultrices et. Fusce mattis luctus nibh. Donec rhoncus pretium lectus id sodales.</p>
+
+	</div> <!-- #dom-section -->
+
+	<div id="event-propagation-section" class="section">
+		<h2>Event Propagation</h2>
+		<div id="blue-box">
+			<button id="button">Don't touch me</button>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<!-- Added jQuery code here -->
+	<script
+  src="http://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+
+<script>
+	// Once jQuery is loaded in, can write jQuery here like JS
+
+	// jQuery's sole purpose is to make it easy to write JavaScript
+
+	// Selecting elements -- JS vs jQ
+	console.log(document.querySelector("h1"));
+	console.log( $("h1") );
+
+	// ------- Text - JS vs jQ
+	document.querySelector("h1").innerHTML = "hi";
+	// can't mix jquery objects with vanilla JS methods/properties
+	$("h1").innerHTML = "hello";
+
+	// have to use jq methods with jq objects
+	$("h1").text("<strong>hello</strong>");
+	console.log($("h1").text());
+
+	// .html() lets you format text with html
+	$("h1").html("<em>goodbye<em>");
+
+
+	// ------- CSS - JS vs jq
+	document.querySelector("h1").style.color = "blue";
+
+	// This is all inline CSS
+	$("h1").css("color", "green");
+	// can add multiple CSS properties 
+	$("h1").css("background-color", "yellow");
+	$("h1").css({
+		fontSize: "40px",
+		textDecoration: "underline"
+	});
+
+	$("h1").css("color", "black");
+
+	// Add css class names / remove css class names
+	$("h1").addClass("red");
+	$("h1").removeClass("red");
+
+
+	// ------ Form elements JS vs jq
+	document.querySelector("#name-input").value = "hi";
+
+	// In jQuery, typically when a method has no parameters, it means "get" the info. 
+	console.log($("#name-input").val());
+
+	// In jQuery, typically when a method has paramters, the first parameter means "set" this info
+	$("#name-input").val("yo");
+
+	// Can store jquery objects in a variable if you want
+	let h1Element = $("h1");
+
+
+	// ---- EVENTS - swapping the image
+	// Register an event handler for kanye img
+	// .on() method
+	// first param is the event name
+	// second param is the function that will run when this event gets triggered
+	$("#kanye").on("mouseenter", function() {
+		// the JS way
+		//this.src = "images/kanye-2.jpg";
+
+		// the jQ way
+		// .attr() method gets/sets any attributes of an element. First param is the attribute name. Second param (optional) would SET the attribute in the first param
+		// to use "this" keyword with jQ methods, use $(this) not this
+		$(this).attr("src", "images/kanye-2.jpg");
+		$(this).attr("alt", "Kanye Flipped");
+
+	});
+
+	$("#kanye").on("mouseleave", function() {
+		// the JS way
+		//this.src = "images/kanye-2.jpg";
+
+		// the jQ way
+		// .attr() method gets/sets any attributes of an element. First param is the attribute name. Second param (optional) would SET the attribute in the first param
+		// to use "this" keyword with jQ methods, use $(this) not this
+		$(this).attr("src", "images/kanye-1.jpg");
+		$(this).attr("alt", "Kanye is back!");
+
+	});
+
+	// Change background color
+	// JS way
+	// let boxes = document.querySelectorAll(".color-box");
+	// for() {
+
+	// }
+
+	// jQ way
+	$(".color-box").on("click", function() {
+		$("body").css("background-color", $(this).data("color"));
+	});
+
+	function greeting() {
+		console.log("animation is REALLY finished");
+	}
+
+	// Simple effects
+	$("#dom-section h3").on("click", function() {
+		// .next() grabs the next sibling element
+		// .slideToggle(): first parameter is the duration. How long?
+		// second paramter is the function that runs AFTER the animation is completed
+		// $(this).next().slideToggle(1000, function() {
+		// 	console.log("animation is REALLY finished");
+		// });
+		$(this).next().slideToggle(1000, greeting);
+		// by default, the code after slideToggle (or any animation methods) runs without waiting for the slide animation to finish.
+		console.log("animation is finished??");
+	});
+
+	// ---- EVENT PROPAGATION aka EVENT BUBBLING
+	// this is not a jquery thing. This is a universal JS thing. Just explaining it using Jquery
+
+	// When an element's event gets triggered, it also triggers its parent (and its parent and its parent etc) event as well
+
+	// #blue-box is a parent of #button
+	$("#blue-box").on("click", function() {
+		$("body").css("background-color", "yellow");
+	});
+
+	$("#button").on("click", function(event) {
+		// this is built into native JS. Not a jquery method
+		// don't trigger parent/ancestor's events. stop here. 
+		event.stopPropagation();
+		alert("I said don't touch me!!");
+	})
+
+	$("#event-propagation-section").on("click", function() {
+		$("body").css("color", "red");
+	})
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
