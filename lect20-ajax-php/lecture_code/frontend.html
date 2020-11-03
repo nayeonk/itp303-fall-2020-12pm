@@ -1,0 +1,204 @@
+<!-- 1. Open up:
+
+	1) Past iTunes ajax lecture: http://303.itpwebdev.com/~nayeon/ajax-itunes/itunes.html
+	2) Current Song app: http://303.itpwebdev.com/~nayeon/song_app/search_form.php
+	3) Today's completed result: http://303.itpwebdev.com/~nayeon/ajax-php/frontend.html
+	4) SPA example, open quiz: https://www.warbyparker.com/
+	5) SPA example 2: http://www.thunderbirds.com/
+
+	Remember AJAX? Back in JS days we used AJAX to use iTunes and Movie DB API and get results without refreshing the page. When AJAX came out this was huge because it feels faster (no reload) and smoother, like a desktop application. 
+
+	Show iTunes lecture. 
+
+	Then with PHP we used different pages to access the DB. Every time the DB had to do something, we refreshed the page to something else. This is typical web behavior. (Show song app).
+
+	These modern days thanks to AJAX we don't need to refresh everytime we interact with the DB. A single-page application (SPA) is a web application or web site that interacts with the user by dynamically rewriting the current page rather than loading entire new pages from a server. Makes it a smoother interaction, kinda like a desktop application. Here are some examples of SPAs (warby parker and thunderbirds examples). 
+
+	This is why JS libraries and frameworks like React, Angular, Ember, etc are so popular these days -- b/c they make SPA easier to build.
+
+	Building a SPA can take a lot of work. And notice that not ALL pages need to be SPA. It's typical of a web application where certain pieces of the pages are SPA (e.g. warby parker quiz) and the rest are traditional web pages. 
+
+	Today we'll make our own small SPA with AJAX and PHP using the same old song database. Show completed example.
+
+	Show slide to show AJAX & PHP workflow. NEXT: scroll down to AJAX function.
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AJAX and PHP</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+	<style>
+		li {
+			margin-top: 5px;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div id="test-output"></div>
+			<h1 class="col-12 mt-3">Song DB Search</h1>
+		</div> <!-- .row -->
+
+		<div class="row">
+			<form action="" method="" class="form-inline col-12 mt-3">
+				<div class="form-group">
+					<label for="search-term-id" class="sr-only">Search:</label>
+					<input type="text" class="form-control" id="search-term-id" placeholder="Search..." name="search-term">
+				</div>
+				<button type="submit" class="btn btn-primary ml-3">Search</button>
+			</form>
+		</div> <!-- .row -->
+
+		<div class="row">
+
+			<h4 class="col-12 mt-4">Search Results:</h4>
+
+			<div class="col-12">
+				<ol id="search-results">
+					<li>Track Name 1</li>
+					<li>Track Name 2</li>
+				</ol>
+			</div>
+
+		</div> <!-- .row -->
+	</div> <!-- .container -->
+
+	<script>
+
+		// 3. Make a quick GET request to backend.php (no parameters yet). Return function is an anonymous function that simply console.logs out the result. Open up backend.php to show that it has one array and that's it. So ajax is calling the php file, and the code does get run because we see no errors. However, no way to know that. NEXT: go to backend.php to return something to the 
+
+		// ajaxGet('backend.php', function(results){
+			// console.log(results);
+
+			// 5. Write JS to display result in browser. Show that the data type also gets printed out because var_dump does that. Not so useful. So what else can we try? NEXT: back to backend.php
+
+			// document.querySelector("#test-output").innerHTML = results;
+
+			// 11. Dot notation to try to grab values? Not gonna work since this is still a STRING.
+
+			// console.log(results.first_name);
+
+			// 12. Need to convert this string in to JS objects. Can do that here... but why not do it from the ajax function so that we don't have to do the extra conversion. Go to the function declaration.
+			// results = JSON.parse(results);
+
+			// 13. Display to browser using dot notation.
+			// document.querySelector("#test-output").innerHTML = results.first_name;
+
+		//});
+
+		// 14. Ok so now that we know how frontend/backend can talk to each other, let's talk about sending data to the backend. In this search example, whatever the user searches for, we will need to send it to the backend and the backend will have to run SQL, then return results. Let's add parameters. We can add as many as we'd like. Send parameters using AJAX. Add parameters here using the ? and console log the results. NEXT: go to backend.php to grab the parameters.
+
+		// ajaxGet('backend.php?firstName=Tommy&lastName=Trojan', function(results){
+
+		// 	console.log(results);
+		// 	document.querySelector("#test-output").innerHTML = results;
+		// 	console.log(results.first_name);
+		// 	document.querySelector("#test-output").innerHTML = results.first_name;
+
+		// });
+
+
+		// 20. Copy paste ajaxGet, change to ajaxPost, and set three parameters. NEXT: Go to backend.php to validate $_POST is being set.
+
+		// ajaxPost('backend.php', 'firstName=Tommy&lastName=Trojan', function(results){
+
+		// 	console.log(results);
+
+		// });
+		
+
+		// 2. Review JS ajax. It will just return the responseText. Let's use this function make a quick GET request to our backend.php
+		function ajaxGet(endpointUrl, returnFunction){
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', endpointUrl, true);
+			xhr.onreadystatechange = function(){
+				if (xhr.readyState == XMLHttpRequest.DONE) {
+					if (xhr.status == 200) {
+						// returnFunction( xhr.responseText );
+
+						// 12. JSON.parse() to parse the JSON string. Show on console that now it's JS objects. We can grab properties now.
+						// returnFunction( JSON.parse(xhr.responseText) );
+						returnFunction( xhr.responseText );
+					} else {
+						alert('AJAX Error.');
+						console.log(xhr.status);
+					}
+				}
+			}
+			xhr.send();
+		};
+
+
+		// 16. Create separate function for POST requests. Copy/paste the GET function. With POST requests, cant simply pass in parameters in the URL. We will need a third parameter just for the variables we want to pass (postData).
+		function ajaxPost(endpointUrl, postData, returnFunction){
+			var xhr = new XMLHttpRequest();
+			// 17. Specify POST request here
+			xhr.open('POST', endpointUrl, true);
+
+			// 18. POST request usually needs some extra header information. If sending from a Form, use this content-type. Note there are other content-types. this one happens to be the most common. Note it says urlencoded, which is the format of the variables. Send any other headers as neccesary.
+			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			xhr.onreadystatechange = function(){
+				if (xhr.readyState == XMLHttpRequest.DONE) {
+					if (xhr.status == 200) {
+
+						// returnFunction( xhr.responseText );
+						returnFunction( JSON.parse(xhr.responseText) );
+
+					} else {
+						alert('AJAX Error.');
+						console.log(xhr.status);
+					}
+				}
+			}
+			// 19. Send the body of the post request. NEXT: Scroll back up and copy paste the ajaxGet call to make ajaxPost. Comment out ajaxGet.
+			xhr.send(postData);
+		};
+
+
+
+
+		// ---- Form handling
+		// 22. Now we can send our search term and send it use it to search from our DB.
+		document.querySelector('form').onsubmit = function() {
+
+			// 23. Get user's search term
+			var searchTerm = document.querySelector('#search-term-id').value.trim();
+
+			// 24. Call ajax function, pass in the search term, log out results. NEXT: go to backend.php to make SQL commands to DB.
+
+			ajaxGet('backend.php?term=' + searchTerm, function(results) {
+
+				console.log(results);
+
+				results = JSON.parse(results);
+
+				// 29. Grab the list element
+				var resultsList = document.querySelector('#search-results');
+
+				// 30. Don't forget to clear all the previous elements upon every search. Now you can keep searching without leaving the page.
+				while( resultsList.hasChildNodes()) {
+
+					resultsList.removeChild(resultsList.lastChild);
+				} 
+				
+				// 31. Run through the results and append them to resultsList.
+				for( var i = 0; i < results.length; i++) {
+					var li = document.createElement('li');
+					li.innerHTML = results[i].name;
+					resultsList.appendChild(li);
+				}
+			})
+			
+			event.preventDefault();
+			// return false;
+		}
+		
+	</script>
+
+</body>
+</html>
