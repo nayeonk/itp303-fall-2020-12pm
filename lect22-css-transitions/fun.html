@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSS3 Animations</title>
+	<style>
+		.box {
+			width: 200px;
+			height: 200px;
+			background-color: #FFE347;
+			font-size: 14px;
+
+			/* CSS transition properties*/
+			/* The moment .box's background-color is changed (by something else), this transition effect will come to play */
+			transition-property: background-color;
+			transition-duration: 0.3s;
+			transition-delay: 0s;
+
+			/* Shorthand for transition property */
+			transition: background-color 0.3s 0s;
+
+			/* Can transition multiple CSS properties */
+			transition: background-color 0.3s 0s, width 1s 0s, font-size 0.5s 0s;
+
+			/* Can also set a catch all transition. Any CSS property that gets changed, apply this transition */
+			transition: all 0.3s 0s;
+		}
+		.box:hover {
+			background-color: #990000;
+			font-size: 32px;
+			width: 400px;
+			color: white;
+		}
+		.box2{
+			width: 200px;
+			height: 200px;
+			background-color: #EF767A;
+			margin-top: 20px;
+			margin-right: 20px;
+			float: left;
+
+			/* CSS transform property */
+			transform: rotate(45deg);
+		}
+		.box3 {
+			width: 200px;
+			height: 200px;
+			background-color: #EF767A;
+			margin-top: 20px;
+			margin-right: 20px;
+			float: left;
+
+			/* Maintains the original proportions*/
+			transform: scale(0.25);
+		}
+		.box4 {
+			width: 200px;
+			height: 200px;
+			background-color: #EF767A;
+			margin-top: 20px;
+			margin-right: 20px;
+			float: left;
+
+			transform: skew(30deg, 0deg);
+		}
+		.box5 {
+			width: 200px;
+			height: 200px;
+			background-color: #EF767A;
+			margin-top: 20px;
+			margin-right: 20px;
+			float: left;
+
+			/* Moves the element along the x-axis and y-axis*/
+			transform: translate(200px, -300px);
+		}
+		.clear {
+			clear: both;
+		}
+		.box6 {
+			width: 200px;
+			height: 200px;
+			margin-top: 60px;
+			background-color: #7D7ABC;
+
+			/* Can also combine multiple transforms in on element */
+			/* By default, all the transform values are set to default */
+			transform: scale(1) translate( 0px, 0px) rotate(0deg) ;
+			transition: transform 0.5s 0s;
+		}
+		.box6:hover {
+			transform: scale(1.5) translate(350px, 0px) rotate(720deg) ;
+		}
+		.img-container {
+			width: 500px;
+			margin-top: 20px;
+			position: relative;
+		}
+		.img-container img {
+			width: 100%;
+			display: block;
+		}
+		.img-container .overlay {
+			background-color: rgba(0, 0, 0, 0.6);
+			color: #FFF;
+			text-align: center;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			right: 0px;
+			bottom: 0px;
+
+			/* By default, hide the overlay. When working with transition, use opacity for best effect */
+			opacity: 0;
+			transition: opacity 1s 0s;
+
+		}
+		.img-container:hover .overlay {
+			opacity: 1;
+			cursor: pointer;
+		}
+		.img-container p {
+			position: absolute;
+			top: 100px;
+			text-align: center;
+			width: 100%;
+			font-size: 40px;
+
+			/*opacity: 0;*/
+			transform: scale(2);
+			transition: transform 1s 0s;
+		}
+		.img-container:hover p {
+			/*opacity: 1;*/
+			transform: scale(1);
+		}
+		.img-container a {
+			text-decoration: none;
+			display: block;
+			background-color: #900;
+			color: #FFF;
+			width: 120px;
+			line-height: 40px;
+			text-align: center;
+			position: absolute;
+			bottom: 80px;
+			left: 0px;
+			right: 0px;
+			margin-left: auto;
+			margin-right: auto;
+
+			opacity: 0;
+			/* Added a delay in the second number*/
+			transition: opacity 1s 1s;
+		}
+		.img-container:hover a {
+			opacity: 1;
+		}
+		.box7 {
+			width: 200px;
+			height: 200px;
+			background-color: skyblue;
+			margin-top: 20px;
+			margin-right: 20px;
+			float: left;
+			margin-bottom: 400px;
+		}
+
+		.move {
+			animation-name: move;
+			animation-duration: 3s;
+			animation-delay: 0s;
+
+			/* Keeps box7 at the state when the animation ends */
+			/*animation-fill-mode: forwards;*/
+			animation-iteration-count: infinite;
+		}
+
+		/* Define an animation routine using @keyframes */
+		/* % is percentage of the entire duration of this animation */
+		@keyframes move {
+			0%{
+				background-color: skyblue;
+				transform: translate(0px,0px);
+			}
+			50% {
+				background-color: yellow;
+				transform: translate(100px,0px);
+			}
+			100%{ 
+				background-color: pink;
+				transform: translate(100px,100px);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="outercontainer">
+
+		<div class="box">
+			Hello, I'm a box.
+		</div>
+
+		<div class="box2">
+			Hello, I'm a rotating box.
+		</div>
+
+		<div class="box3">
+			Hello, I'm a scaled box
+		</div>
+
+		<div class="box4">
+			Hello, I'm a skewed box
+		</div>
+
+		<div class="box5">
+			Hello, I'm a box that translates.
+		</div>
+
+		<div class="clear"></div>
+
+		<div class="box6">
+			Hello, I'm another box.
+		</div>
+
+
+		<div class="img-container">
+			<img src="https://media.altpress.com/uploads/2018/07/pikachu_pokemongo_header2016-1-696x449.png" alt="Pikachu"/>
+			<div class="overlay">
+				<p>Pikachu</p>
+				<a href="#">Read More</a>
+			</div>
+		</div>
+
+		<button id="btn">Trigger the animation</button>
+
+		<!-- CSS Animation -->
+		<div class="box7">
+			Box 7
+		</div>
+
+
+	</div>
+
+	<script>
+		// Using JS you can trigger animations
+		document.querySelector("#btn").onclick = function() {
+			// When button is clicked, add CSS class .move to .box7. the CSS class .move has the animation properties that triggers the 'move' animation
+			document.querySelector(".box7").classList.add("move");
+		}
+	</script>
+	
+</body>
+</html>
+
+
+
+
+
+
+
